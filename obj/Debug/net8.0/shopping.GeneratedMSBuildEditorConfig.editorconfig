@@ -1,0 +1,183 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = shopping
+build_property.RootNamespace = shopping
+build_property.ProjectDir = C:\D\vs2022\shopping\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\D\vs2022\shopping
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/D/vs2022/shopping/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/CodeGenerator/CreateArea.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29kZUdlbmVyYXRvclxDcmVhdGVBcmVhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/CodeGenerator/CreateController.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29kZUdlbmVyYXRvclxDcmVhdGVDb250cm9sbGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/CodeGenerator/CreateDbContext.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29kZUdlbmVyYXRvclxDcmVhdGVEYkNvbnRleHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/CodeGenerator/CreateDbContextTables.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29kZUdlbmVyYXRvclxDcmVhdGVEYkNvbnRleHRUYWJsZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/CodeGenerator/CreateMetadata.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29kZUdlbmVyYXRvclxDcmVhdGVNZXRhZGF0YS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/CodeGenerator/CreateMetadataTables.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29kZUdlbmVyYXRvclxDcmVhdGVNZXRhZGF0YVRhYmxlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/CodeGenerator/CreateRepository.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29kZUdlbmVyYXRvclxDcmVhdGVSZXBvc2l0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/CodeGenerator/CreateRepositorySort.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29kZUdlbmVyYXRvclxDcmVhdGVSZXBvc2l0b3J5U29ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/CodeGenerator/CreateRepositoryTables.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29kZUdlbmVyYXRvclxDcmVhdGVSZXBvc2l0b3J5VGFibGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/CodeGenerator/CreateView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29kZUdlbmVyYXRvclxDcmVhdGVWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/CodeGenerator/CreateViewList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29kZUdlbmVyYXRvclxDcmVhdGVWaWV3TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/CodeGenerator/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29kZUdlbmVyYXRvclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/CodeGenerator/Message.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29kZUdlbmVyYXRvclxNZXNzYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Home/Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Home/Question.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxRdWVzdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Message/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzc2FnZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Profile/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Profile/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Profile/Upload.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxVcGxvYWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Shared/_LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Shared/_LayoutCodeGenerator.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRDb2RlR2VuZXJhdG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Shared/_LayoutLite.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRMaXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Shared/_PartialAlertMessage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYXJ0aWFsQWxlcnRNZXNzYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Shared/_PartialMenuMember.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYXJ0aWFsTWVudU1lbWJlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Shared/_PartialMenuMis.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYXJ0aWFsTWVudU1pcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Shared/_PartialMenuUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYXJ0aWFsTWVudVVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/User/Forget.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxGb3JnZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/User/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/User/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-sqpyj181tw
