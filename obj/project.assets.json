@@ -12154,24 +12154,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Wed406\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\orang\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\D\\vs2022\\shopping\\shopping.csproj",
+      "projectUniqueName": "d:\\vsc2022\\shopping\\shopping.csproj",
       "projectName": "shopping",
-      "projectPath": "C:\\D\\vs2022\\shopping\\shopping.csproj",
-      "packagesPath": "C:\\Users\\Wed406\\.nuget\\packages\\",
-      "outputPath": "C:\\D\\vs2022\\shopping\\obj\\",
+      "projectPath": "d:\\vsc2022\\shopping\\shopping.csproj",
+      "packagesPath": "C:\\Users\\orang\\.nuget\\packages\\",
+      "outputPath": "d:\\vsc2022\\shopping\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Wed406\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\orang\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12179,7 +12174,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -12355,7 +12349,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

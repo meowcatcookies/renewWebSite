@@ -3017,6 +3017,82 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:CartService._contextAccessor">
+            <summary>
+            HttpContextAccessor 物件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:CartService._context">
+            <summary>
+            HttpContext 物件
+            </summary>
+        </member>
+        <member name="P:CartService.OrderNo">
+            <summary>
+            訂單編號
+            </summary>
+        </member>
+        <member name="P:CartService.LotNo">
+            <summary>
+            購物批號 LotNo
+            </summary>
+        </member>
+        <member name="P:CartService.LotCreateTime">
+            <summary>
+            購物批號建立時間
+            </summary>
+        </member>
+        <member name="M:CartService.NewLotNo">
+            <summary>
+            更新購物批號
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CartService.MergeCart">
+            <summary>
+            登入時將現有遊客的購物車加入客戶的購物車
+            </summary>
+        </member>
+        <member name="M:CartService.AddCart(System.String)">
+            <summary>
+            加入購物車
+            </summary>
+            <param name="productNo">商品編號</param>
+        </member>
+        <member name="M:CartService.AddCart(System.String,System.Int32)">
+            <summary>
+            加入購物車
+            </summary>
+            <param name="productNo">商品編號</param>
+            <param name="buyQty">數量</param>
+        </member>
+        <member name="M:CartService.AddCart(System.String,System.String,System.Int32)">
+            <summary>
+            加入購物車
+            </summary>
+            <param name="productNo">商品編號</param>
+            <param name="prod_Spec">商品規格</param>
+            <param name="buyQty">數量</param>
+        </member>
+        <member name="M:CartService.UpdateCart(System.Int32,System.Int32)">
+            <summary>
+            更新購物車
+            </summary>
+            <param name="id">row ID</param>
+            <param name="qty">數量</param>
+        </member>
+        <member name="M:CartService.DeleteCart(System.Int32)">
+            <summary>
+            刪除購物車
+            </summary>
+            <param name="id">row ID</param>
+        </member>
+        <member name="M:CartService.CartPayment(vmOrders)">
+            <summary>
+            消費者付款
+            </summary>
+        </member>
         <member name="T:CryptographyService">
             <summary>
             加解密功能服務
@@ -3843,6 +3919,69 @@
             卡片寛度大小枚舉類型
             </summary>
         </member>
+        <member name="T:ShopService">
+            <summary>
+            購物商城服務類別
+            </summary>
+        </member>
+        <member name="M:ShopService.GetProductImage(System.String)">
+            <summary>
+            取得商品主要圖片位置
+            </summary>
+            <param name="prodNo">商品編號</param>
+            <returns></returns>
+        </member>
+        <member name="M:ShopService.GetProductImage(System.String,System.String)">
+            <summary>
+            取得商品指定圖片位置
+            </summary>
+            <param name="prodNo">商品編號</param>
+            <param name="imageName">商品圖片名稱</param>
+            <returns></returns>
+        </member>
+        <member name="M:ShopService.GetProductImageList(System.String)">
+            <summary>
+            取得商品所有圖片清單，不包含主要商品圖片
+            </summary>
+            <param name="prodNo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Controllers.CartController.Index">
+            <summary>
+            購物車列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Controllers.CartController.AddCart(System.String,System.Int32)">
+            <summary>
+            加入購物車
+            </summary>
+            <param name="id">商品編號</param>
+            <param name="qty">數量</param>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Controllers.CartController.UpdateCart(System.String,System.Int32)">
+            <summary>
+            更新購物車
+            </summary>
+            <param name="id">商品編號</param>
+            <param name="qty">數量</param>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Controllers.CartController.UpdateQty(System.String,System.Int32)">
+            <summary>
+            更新購物車數量
+            </summary>
+            <param name="prodNo">商品編號</param>
+            <param name="qty">數量</param>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Controllers.CartController.DeleteCart(System.Int32)">
+            <summary>
+            刪除購物車
+            </summary>
+            <param name="id">購物車Id</param>
+        </member>
         <member name="M:shopping.Controllers.UserController.Logout">
             <summary>
             登出系統
@@ -3862,6 +4001,62 @@
             <param name="model">使用者輸入的資料模型</param>
             <returns></returns>
         </member>
+        <member name="M:shopping.Models.z_sqlCarts.GetDataList">
+            <summary>
+            取得目前購物車明細
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Models.z_sqlCarts.MergeCart">
+            <summary>
+            遊客購物車合併至會員購物車
+            </summary>
+        </member>
+        <member name="M:shopping.Models.z_sqlCarts.AddCart(System.String,System.String,System.Int32)">
+            <summary>
+            加入商品至目前批號購物車中
+            </summary>
+            <param name="prodNo">商品編號</param>
+            <param name="prodSpec">商品規格(空白可自抓)</param>
+            <param name="qty">數量</param>
+        </member>
+        <member name="M:shopping.Models.z_sqlCarts.UpdateCart(System.Int32,System.Int32)">
+            <summary>
+            更新購物車
+            </summary>
+            <param name="id">Id</param>
+            <param name="qty">數量</param>
+        </member>
+        <member name="M:shopping.Models.z_sqlCarts.UpdateCart(System.String,System.Int32)">
+            <summary>
+            更新購物車
+            </summary>
+            <param name="prodNo">商品編號</param>
+            <param name="qty">數量</param>
+        </member>
+        <member name="M:shopping.Models.z_sqlCarts.DeleteCart(System.Int32)">
+            <summary>
+            刪除購物車
+            </summary>
+            <param name="id">Id</param>
+        </member>
+        <member name="M:shopping.Models.z_sqlCarts.DeleteCart">
+            <summary>
+            刪除目前批號購物車
+            </summary>
+        </member>
+        <member name="M:shopping.Models.z_sqlCarts.GetCartCount">
+            <summary>
+            取得目前批號購物車筆數
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Models.z_sqlCarts.GetCartTotal">
+            <summary>
+            取得目前批號購物車合計
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:shopping.Models.z_sqlCategorys.SetCategoryName(System.String)">
             <summary>
             取得單筆資料(同步呼叫)
@@ -3875,6 +4070,39 @@
             </summary>
             <param name="categoryNo">分類代號</param>
             <returns></returns>
+        </member>
+        <member name="M:shopping.Models.z_sqlOrderDetails.CreateNewOrderDetail(System.String)">
+            <summary>
+            購物車資訊新增到訂單明細
+            </summary>
+            <param name="orderNo">訂單編號</param>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Models.z_sqlOrderDetails.GeOrderDetailList(System.String)">
+            <summary>
+            取得訂單明細
+            </summary>
+            <param name="orderNo">訂單編號</param>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Models.z_sqlOrders.CreateNewOrder(vmOrders)">
+            <summary>
+            結帳付款產生訂單表頭
+            </summary>
+            <param name="model">付款資訊</param>
+            <returns>訂單編號</returns>
+        </member>
+        <member name="M:shopping.Models.z_sqlOrders.GetOrderList">
+            <summary>
+            取得會員訂單
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Models.z_sqlOrders.CancelOrder(System.String)">
+            <summary>
+            取消訂單
+            </summary>
+            <param name="sheetNo">訂單編號</param>
         </member>
         <member name="M:shopping.Models.z_sqlProducts.GetData(System.String)">
             <summary>
@@ -3987,6 +4215,26 @@
             <param name="validateCode">驗證碼</param>
             <returns></returns>
         </member>
+        <member name="T:dmCartTotal">
+            <summary>
+            購物車合計
+            </summary>
+        </member>
+        <member name="P:dmCartTotal.Amount">
+            <summary>
+            購物車小計
+            </summary>
+        </member>
+        <member name="P:dmCartTotal.Freight">
+            <summary>
+            運費金額
+            </summary>
+        </member>
+        <member name="P:dmCartTotal.Total">
+            <summary>
+            購物車合計
+            </summary>
+        </member>
         <member name="T:vmForget">
             <summary>
             忘記密碼用 ViewModel
@@ -3995,6 +4243,11 @@
         <member name="T:vmLogin">
             <summary>
             登入用 ViewModel
+            </summary>
+        </member>
+        <member name="T:vmOrders">
+            <summary>
+            結帳訂單資訊
             </summary>
         </member>
         <member name="T:vmRegister">
