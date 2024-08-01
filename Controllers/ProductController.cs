@@ -8,16 +8,15 @@ using Microsoft.Extensions.Logging;
 
 namespace shopping.Controllers
 {
-
-    public class ProductController : Controller
+  public class ProductController : Controller
+  {
+    public ActionResult Detail(string id)
     {
-        public ActionResult Detail(string id)
-        {
-            using var product = new z_sqlProducts();
-            var model = product.GetData(id);
-            return View(model);
-        }
+      using var product = new z_sqlProducts();
+      var model = product.GetData(id);
+      return View(model);
     }
+  }
 
 
 }

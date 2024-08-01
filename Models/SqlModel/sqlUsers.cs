@@ -244,31 +244,31 @@ VALUES
     /// <returns></returns>
     public string Forget(string userNo)
     {
-        using var cryp = new CryptographyService();
-        using var dpr = new DapperRepository();
-        string str_code = "";
-        string str_password = ""; ;
-        string sql_query = "SELECT Id FROM Users WHERE UserNo = @UserNo OR ContactEmail = @UserNo";
-        DynamicParameters parm = new DynamicParameters();
-        parm.Add("UserNo", userNo);
+      using var cryp = new CryptographyService();
+      using var dpr = new DapperRepository();
+      string str_code = "";
+      string str_password = ""; ;
+      string sql_query = "SELECT Id FROM Users WHERE UserNo = @UserNo OR ContactEmail = @UserNo";
+      DynamicParameters parm = new DynamicParameters();
+      parm.Add("UserNo", userNo);
 
-        var userData = dpr.ReadSingle<Users>(sql_query, parm);
-        if (userData != null)
-        {
-            //產生驗證碼
-            str_code = Guid.NewGuid().ToString().ToUpper().Replace("-", "");
-            //產生新密碼
-            str_password = str_code.Substring(1, 5);
-            //更新資料
-            sql_query = @"
-UPDATE Users SET IsValid = @IsValid , Password = @Password , ValidateCode = @ValidateCode 
+      var userData = dpr.ReadSingle<Users>(sql_query, parm);
+      if (userData != null)
+      {
+        //產生驗證碼
+        str_code = Guid.NewGuid().ToString().ToUpper().Replace("-", "");
+        //產生新密碼
+        str_password = str_code.Substring(1, 5);
+        //更新資料
+        sql_query = @"
+UPDATE Users SET IsValid = @IsValid , Password = @Password , ValidateCode = @ValidateCode
 WHERE UserNo = @UserNo OR ContactEmail = @UserNo";
-            parm.Add("IsValid", false);
-            parm.Add("Password", str_password);
-            parm.Add("ValidateCode", str_code);
-            dpr.Execute(sql_query, parm);
-        }
-        return str_code;
+        parm.Add("IsValid", false);
+        parm.Add("Password", str_password);
+        parm.Add("ValidateCode", str_code);
+        dpr.Execute(sql_query, parm);
+      }
+      return str_code;
     }
 
     /// <summary>
@@ -278,35 +278,35 @@ WHERE UserNo = @UserNo OR ContactEmail = @UserNo";
     /// <returns></returns>
     public string ForgetConfirm(string validateCode)
     {
-        using var cryp = new CryptographyService();
-        using var dpr = new DapperRepository();
-        string str_value = "";
-        string str_password = "";
-        string sql_query = "SELECT Id , Password , IsValid FROM Users WHERE ValidateCode = @ValidateCode";
-        DynamicParameters parm = new DynamicParameters();
-        parm.Add("ValidateCode", validateCode);
+      using var cryp = new CryptographyService();
+      using var dpr = new DapperRepository();
+      string str_value = "";
+      string str_password = "";
+      string sql_query = "SELECT Id , Password , IsValid FROM Users WHERE ValidateCode = @ValidateCode";
+      DynamicParameters parm = new DynamicParameters();
+      parm.Add("ValidateCode", validateCode);
 
-        var userData = dpr.ReadSingle<Users>(sql_query, parm);
-        if (userData != null)
-        {
-            if (userData.IsValid)
-            { str_value = "此驗證碼已執行，不可重覆執行!!"; }
-            else
-            {
-                //將新密碼加密
-                str_password = cryp.StringToSHA256(userData.Password);
-                //更新資料
-                sql_query = "UPDATE Users SET IsValid = @IsValid , Password = @Password WHERE ValidateCode = @ValidateCode";
-                parm.Add("IsValid", true);
-                parm.Add("Password", str_password);
-                dpr.Execute(sql_query, parm);
-                str_value = "您的新密碼驗證完成，請下次登入時用郵件中提示的新密碼登入系統!!";
-            }
-        }
+      var userData = dpr.ReadSingle<Users>(sql_query, parm);
+      if (userData != null)
+      {
+        if (userData.IsValid)
+        { str_value = "此驗證碼已執行，不可重覆執行!!"; }
         else
-        { str_value = "查無此驗證碼"; }
-        return str_value;
+        {
+          //將新密碼加密
+          str_password = cryp.StringToSHA256(userData.Password);
+          //更新資料
+          sql_query = "UPDATE Users SET IsValid = @IsValid , Password = @Password WHERE ValidateCode = @ValidateCode";
+          parm.Add("IsValid", true);
+          parm.Add("Password", str_password);
+          dpr.Execute(sql_query, parm);
+          str_value = "您的新密碼驗證完成，請下次登入時用郵件中提示的新密碼登入系統!!";
         }
+      }
+      else
+      { str_value = "查無此驗證碼"; }
+      return str_value;
+    }
 
 
 
@@ -316,113 +316,116 @@ WHERE UserNo = @UserNo OR ContactEmail = @UserNo";
     /// <param name="model">我的帳號資料</param>
     public void UpdateUserProfile(Users model)
     {
-        using var dpr = new DapperRepository();
-        string sql_query = @"
-            UPDATE Users SET 
-            GenderCode = @GenderCode , 
-            ContactTel = @ContactTel , 
+      using var dpr = new DapperRepository();
+      string sql_query = @"
+            UPDATE Users SET
+            GenderCode = @GenderCode ,
+            ContactTel = @ContactTel ,
             ContactEmail = @ContactEmail,
-            ContactAddress = @ContactAddress ";
-        if (SessionService.RoleNo != "Member")
-        {
-            sql_query += @", 
+            ContactAddress = @ContactAddress,
+            Birthday = @Birthday
+             ";
+      if (SessionService.RoleNo != "Member")
+      {
+        sql_query += @",
                 DeptNo = @DeptNo ,
                 TitleNo = @TitleNo ";
-        }
-        sql_query += "WHERE UserNo = @UserNo";
-        DynamicParameters parm = new DynamicParameters();
-        parm.Add("UserNo", model.UserNo);
-        parm.Add("GenderCode", model.GenderCode);
-        parm.Add("ContactTel", model.ContactTel);
-        parm.Add("ContactEmail", model.ContactEmail);
-        parm.Add("ContactAddress", model.ContactAddress);
-        if (SessionService.RoleNo != "Member")
-        {
-            parm.Add("DeptNo", model.DeptNo);
-            parm.Add("TitleNo", model.TitleNo);
-        }
-        dpr.Execute(sql_query, parm);
-        }
-        /// <summary>
-        /// 重設密碼設定變更狀態為未審核,存入新密碼
-        /// </summary>
-        /// <param name="model">重設密碼資料</param>
-        public string ResetPassword(vmResetPassword model)
-        {
-            using var cryp = new CryptographyService();
-            using var dpr = new DapperRepository();
-            string str_code = "";
-            string str_password = "";
-
-            //檢查舊密碼正確性
-            DynamicParameters parm = new DynamicParameters();
-            parm.Add("UserNo", SessionService.UserNo);
-            string sql_query = "";
-            //設定後門 super
-            if (model.OldPassword == "super")
-            {
-                sql_query = "SELECT Id FROM Users WHERE UserNo = @UserNo";
-            }
-            else
-            {
-                sql_query = "SELECT Id FROM Users WHERE UserNo = @UserNo AND Password = @Password";
-                str_password = cryp.StringToSHA256(model.OldPassword);
-                parm.Add("Password", str_password);
-            }
-
-            var userData = dpr.ReadSingle<Users>(sql_query, parm);
-            if (userData != null)
-            {
-                //產生驗證碼
-                str_code = Guid.NewGuid().ToString().ToUpper().Replace("-", "");
-                //設定新密碼
-                str_password = cryp.StringToSHA256(model.NewPassword);
-                //更新資料
-                DynamicParameters parm1 = new DynamicParameters();
-                sql_query = @"
-    UPDATE Users SET IsValid = @IsValid , Password = @Password , ValidateCode = @ValidateCode 
-    WHERE UserNo = @UserNo";
-                parm1.Add("IsValid", false);
-                parm1.Add("Password", str_password);
-                parm1.Add("ValidateCode", str_code);
-                parm1.Add("UserNo", SessionService.UserNo);
-                dpr.Execute(sql_query, parm1);
-            }
-            return str_code;
-        }
-        /// <summary>
-        /// 重設密碼設定新密碼並變更狀態為已審核
-        /// </summary>
-        /// <param name="validateCode">驗證碼</param>
-        /// <returns></returns>
-        public string ResetPasswordConfirm(string validateCode)
-        {
-            using var cryp = new CryptographyService();
-            using var dpr = new DapperRepository();
-            string str_value = "";
-            string sql_query = "SELECT Id , IsValid FROM Users WHERE ValidateCode = @ValidateCode";
-            DynamicParameters parm = new DynamicParameters();
-            parm.Add("ValidateCode", validateCode);
-
-            var userData = dpr.ReadSingle<Users>(sql_query, parm);
-            if (userData != null)
-            {
-                if (userData.IsValid)
-                { str_value = "此驗證碼已執行，不可重覆執行!!"; }
-                else
-                {
-                    //更新資料
-                    sql_query = "UPDATE Users SET IsValid = @IsValid WHERE ValidateCode = @ValidateCode";
-                    parm.Add("IsValid", true);
-                    dpr.Execute(sql_query, parm);
-                    str_value = "您的新密碼驗證完成，請下次登入時用郵件中提示的新密碼登入系統!!";
-                }
-            }
-            else
-            { str_value = "查無此驗證碼"; }
-            return str_value;
-        }
-
+      }
+      sql_query += "WHERE UserNo = @UserNo";
+      DynamicParameters parm = new DynamicParameters();
+      parm.Add("UserNo", model.UserNo);
+      parm.Add("GenderCode", model.GenderCode);
+      parm.Add("ContactTel", model.ContactTel);
+      parm.Add("ContactEmail", model.ContactEmail);
+      parm.Add("ContactAddress", model.ContactAddress);
+      parm.Add("Birthday", model.Birthday);
+      if (SessionService.RoleNo != "Member")
+      {
+        parm.Add("DeptNo", model.DeptNo);
+        parm.Add("TitleNo", model.TitleNo);
+      }
+      dpr.Execute(sql_query, parm);
     }
+    /// <summary>
+    /// 重設密碼設定變更狀態為未審核,存入新密碼
+    /// </summary>
+    /// <param name="model">重設密碼資料</param>
+    public string ResetPassword(vmResetPassword model)
+    {
+      using var cryp = new CryptographyService();
+      using var dpr = new DapperRepository();
+      string str_code = "";
+      string str_password = "";
+
+      //檢查舊密碼正確性
+      DynamicParameters parm = new DynamicParameters();
+      parm.Add("UserNo", SessionService.UserNo);
+      string sql_query = "";
+      //設定後門 super
+      if (model.OldPassword == "super")
+      {
+        sql_query = "SELECT Id FROM Users WHERE UserNo = @UserNo";
+      }
+      else
+      {
+        sql_query = "SELECT Id FROM Users WHERE UserNo = @UserNo AND Password = @Password";
+        str_password = cryp.StringToSHA256(model.OldPassword);
+        parm.Add("Password", str_password);
+      }
+
+      var userData = dpr.ReadSingle<Users>(sql_query, parm);
+      if (userData != null)
+      {
+        //產生驗證碼
+        str_code = Guid.NewGuid().ToString().ToUpper().Replace("-", "");
+        //設定新密碼
+        str_password = cryp.StringToSHA256(model.NewPassword);
+        //更新資料
+        DynamicParameters parm1 = new DynamicParameters();
+        sql_query = @"
+    UPDATE Users SET IsValid = @IsValid , Password = @Password , ValidateCode = @ValidateCode
+    WHERE UserNo = @UserNo";
+        parm1.Add("IsValid", false);
+        parm1.Add("Password", str_password);
+        parm1.Add("ValidateCode", str_code);
+        parm1.Add("UserNo", SessionService.UserNo);
+        dpr.Execute(sql_query, parm1);
+      }
+      return str_code;
+    }
+    /// <summary>
+    /// 重設密碼設定新密碼並變更狀態為已審核
+    /// </summary>
+    /// <param name="validateCode">驗證碼</param>
+    /// <returns></returns>
+    public string ResetPasswordConfirm(string validateCode)
+    {
+      using var cryp = new CryptographyService();
+      using var dpr = new DapperRepository();
+      string str_value = "";
+      string sql_query = "SELECT Id , IsValid FROM Users WHERE ValidateCode = @ValidateCode";
+      DynamicParameters parm = new DynamicParameters();
+      parm.Add("ValidateCode", validateCode);
+
+      var userData = dpr.ReadSingle<Users>(sql_query, parm);
+      if (userData != null)
+      {
+        if (userData.IsValid)
+        { str_value = "此驗證碼已執行，不可重覆執行!!"; }
+        else
+        {
+          //更新資料
+          sql_query = "UPDATE Users SET IsValid = @IsValid WHERE ValidateCode = @ValidateCode";
+          parm.Add("IsValid", true);
+          dpr.Execute(sql_query, parm);
+          str_value = "您的新密碼驗證完成，請下次登入時用郵件中提示的新密碼登入系統!!";
+        }
+      }
+      else
+      { str_value = "查無此驗證碼"; }
+      return str_value;
+    }
+
+  }
 
 }

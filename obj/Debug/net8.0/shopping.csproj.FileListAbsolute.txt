@@ -631,3 +631,4 @@ D:\vsc2022\shopping\obj\Debug\net8.0\shopping.xml
 D:\vsc2022\shopping\obj\Debug\net8.0\shopping.pdb
 D:\vsc2022\shopping\obj\Debug\net8.0\shopping.genruntimeconfig.cache
 D:\vsc2022\shopping\obj\Debug\net8.0\ref\shopping.dll
+C:\D\vs2022\shopping\obj\Debug\net8.0\shopping.sourcelink.json

@@ -25,22 +25,19 @@
               <div class="tab_thumbnail" data-tabs="tabs">
                 <div class="thumbnail-carousel">
                   <ul class="nav">
-                    @{
-                      str_active = "active";
-                      int_index = 0;
-                      for (int i = 0; i < ImageList.Count; i++)
-                      {
-                        if (i > 0) str_active = "";
-                        int_index++;
-                        str_name = $"view{int_index}{int_index}";
 
-                        <li>
-                          <a class="@str_active" href="#@str_name" class="shadow-box" aria-controls="@str_name"
-                            data-bs-toggle="tab">
-                            <img src="@Url.Content(ImageList[i])" alt="" />
-                          </a>
-                        </li>
-                      }
+
+                    @foreach (var item in ImageList)
+                    {
+                      int_index += 1;
+                      str_active = "";
+                      if (int_index == 1) str_active = "active";
+                      str_name = $"view{int_index}{int_index}";
+                      <li>
+                        <a class="@str_active" href="#@str_name" class="shadow-box" data-bs-toggle="tab">
+                          <img src="@Url.Content(item)" alt="" />
+                        </a>
+                      </li>
                     }
                   </ul>
                 </div>
@@ -214,8 +211,10 @@
                     </div>
                     <div class="single-prodcut-img product-overlay pos-rltv">
                       <a href="single-product.html">
-                        <img alt="" src="images/product_details/product/01.jpg" class="primary-image" />
-                        <img alt="" src="images/product_details/product/02.jpg" class="secondary-image" />
+                        <img alt="" src="@Url.Content("~/images/product_details/product/01.jpg")"
+                          class="primary-image" />
+                        <img alt="" src="@Url.Content("~/images/product_details/product/02.jpg")"
+                          class="secondary-image" />
                       </a>
                     </div>
                     <div class="product-icon socile-icon-tooltip text-center">
@@ -249,9 +248,12 @@
                 <div class="single-product">
                   <div class="product-img">
                     <div class="single-prodcut-img product-overlay pos-rltv">
-                      <a href="single-product.html"><img alt="" src="images/product_details/product/03.jpg"
-                          class="primary-image" /><img alt="" src="images/product_details/product/04.jpg"
-                          class="secondary-image" /></a>
+                      <a href="single-product.html">
+                        <img alt="" src="@Url.Content("~/images/product_details/product/03.jpg")"
+                          class="primary-image" />
+                        <img alt="" src="@Url.Content("~/images/product_details/product/04.jpg")"
+                          class="secondary-image" />
+                      </a>
                     </div>
                     <div class="product-icon socile-icon-tooltip text-center">
                       <ul>
@@ -288,8 +290,10 @@
                     </div>
                     <div class="single-prodcut-img product-overlay pos-rltv">
                       <a href="single-product.html">
-                        <img alt="" src="images/product_details/product/02.jpg" class="primary-image" />
-                        <img alt="" src="images/product_details/product/03.jpg" class="secondary-image" />
+                        <img alt="" src="@Url.Content("~/images/product_details/product/02.jpg")"
+                          class="primary-image" />
+                        <img alt="" src="@Url.Content("~/images/product_details/product/03.jpg")"
+                          class="secondary-image" />
                       </a>
                     </div>
                     <div class="product-icon socile-icon-tooltip text-center">
@@ -324,8 +328,10 @@
                   <div class="product-img">
                     <div class="single-prodcut-img product-overlay pos-rltv">
                       <a href="single-product.html">
-                        <img alt="" src="images/product_details/product/04.jpg" class="primary-image" />
-                        <img alt="" src="images/product_details/product/03.jpg" class="secondary-image" />
+                        <img alt="" src="@Url.Content("~/images/product_details/product/04.jpg")"
+                          class="primary-image" />
+                        <img alt="" src="@Url.Content("~/images/product_details/product/03.jpg")"
+                          class="secondary-image" />
                       </a>
                     </div>
                     <div class="product-icon socile-icon-tooltip text-center">
@@ -360,8 +366,10 @@
                   <div class="product-img">
                     <div class="single-prodcut-img product-overlay pos-rltv">
                       <a href="single-product.html">
-                        <img alt="" src="images/product_details/product/05.jpg" class="primary-image" />
-                        <img alt="" src="images/product_details/product/06.jpg" class="secondary-image" />
+                        <img alt="" src="@Url.Content("~/images/product_details/product/05.jpg")"
+                          class="primary-image" />
+                        <img alt="" src="@Url.Content("~/images/product_details/product/06.jpg")"
+                          class="secondary-image" />
                       </a>
                     </div>
                     <div class="product-icon socile-icon-tooltip text-center">
@@ -416,22 +424,26 @@
                     <div class="tab-content active-portfolio-area-2">
                       <div role="tabpanel" class="tab-pane active" id="view1">
                         <div class="product-img">
-                          <a href="#"><img src="images/product_details/product/01.jpg" alt="Single portfolio" /></a>
+                          <a href="#"><img src="@Url.Content("~/images/product_details/product/01.jpg")"
+                              alt="Single portfolio" /></a>
                         </div>
                       </div>
                       <div role="tabpanel" class="tab-pane" id="view2">
                         <div class="product-img">
-                          <a href="#"><img src="images/product_details/product/02.jpg" alt="Single portfolio" /></a>
+                          <a href="#"><img src="@Url.Content("~/images/product_details/product/02.jpg")"
+                              alt="Single portfolio" /></a>
                         </div>
                       </div>
                       <div role="tabpanel" class="tab-pane" id="view3">
                         <div class="product-img">
-                          <a href="#"><img src="images/product_details/product/03.jpg" alt="Single portfolio" /></a>
+                          <a href="#"><img src="@Url.Content("~/images/product_details/product/03.jpg")"
+                              alt="Single portfolio" /></a>
                         </div>
                       </div>
                       <div role="tabpanel" class="tab-pane" id="view4">
                         <div class="product-img">
-                          <a href="#"><img src="images/product_details/product/04.jpg" alt="Single portfolio" /></a>
+                          <a href="#"><img src="@Url.Content("~/images/product_details/product/04.jpg")"
+                              alt="Single portfolio" /></a>
                         </div>
                       </div>
                     </div>
@@ -440,25 +452,25 @@
                         <li class="nav-item" role="presentation">
                           <a class="nav-link active" id="view1" data-bs-toggle="tab" href="#view1" role="tab"
                             aria-controls="view1" aria-selected="true">
-                            <img src="images/product_details/product/01.jpg" alt="" />
+                            <img src="@Url.Content("~/images/product_details/product/01.jpg")" alt="" />
                           </a>
                         </li>
                         <li class="nav-item" role="presentation">
                           <a class="nav-link" id="view2" data-bs-toggle="tab" href="#view2" role="tab"
                             aria-controls="view2" aria-selected="true">
-                            <img src="images/product_details/product/02.jpg" alt="" />
+                            <img src="@Url.Content("~/images/product_details/product/02.jpg")" alt="" />
                           </a>
                         </li>
                         <li class="nav-item" role="presentation">
                           <a class="nav-link" id="view3" data-bs-toggle="tab" href="#view3" role="tab"
                             aria-controls="view3" aria-selected="true">
-                            <img src="images/product_details/product/03.jpg" alt="" />
+                            <img src="@Url.Content("~/images/product_details/product/03.jpg")" alt="" />
                           </a>
                         </li>
                         <li class="nav-item" role="presentation">
                           <a class="nav-link" id="view4" data-bs-toggle="tab" href="#view4" role="tab"
                             aria-controls="view4" aria-selected="true">
-                            <img src="images/product_details/product/04.jpg" alt="" />
+                            <img src="@Url.Content("~/images/product_details/product/04.jpg")" alt="" />
                           </a>
                         </li>
                       </div>
