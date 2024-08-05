@@ -89,51 +89,53 @@
                 @Model.SpecificationText
               </p>
             </div>
-            <div class="bt">
-              <div class="sp-bottom-des">
-                @foreach (var item in PropertyList)
-                {
-                  <label class="font-bold">@item.PropertyName ： @item.PropertyValue</label>
-                  <br />
-                }
-                <label>
-                  <span class="font-bold">商品狀況</span>：良好 &ensp;
-                  <button class="dd" data-bs-toggle="tooltip" data-bs-html="true"
-                    title="<div class='ss'>★ <b>全新</b>：未使用過，可能含原包裝袋或標籤<br><br> ★ <b>良好</b>：8~9成新，使用過1~2次，保存良好<br><br> ★ <b>輕度使用</b>：6~7成新，有輕微使用痕跡或瑕疵<br><br> ★ <b>尚可</b>：5成新(含)以下，有明顯使用痕跡或瑕疵</div>">
-                    <i class="fa-sharp fa-solid fa-circle-question color-lightgrey"></i>
-                  </button>
-                </label>
-              </div>
-              <div class="quantity-area">
-                <label class="font-bold">數量：</label>
-                <div class="cart-quantity">
-                  <form action="#" method="POST" id="myform">
+
+
+            @using (Html.BeginForm("AddToCart", "Cart", new { area = "" }, FormMethod.Post))
+            {
+              <input type="hidden" id="ProdNo" name="ProdNo" value="@Model.ProdNo" />
+              <div class="bt">
+                <div class="sp-bottom-des">
+                  @foreach (var item in PropertyList)
+                  {
+                    <label class="font-bold">@item.PropertyName ： @item.PropertyValue</label>
+                    <br />
+                  }
+                  <label>
+                    <span class="font-bold">商品狀況</span>：良好 &ensp;
+                    <button class="dd" data-bs-toggle="tooltip" data-bs-html="true"
+                      title="<div class='ss'>★ <b>全新</b>：未使用過，可能含原包裝袋或標籤<br><br> ★ <b>良好</b>：8~9成新，使用過1~2次，保存良好<br><br> ★ <b>輕度使用</b>：6~7成新，有輕微使用痕跡或瑕疵<br><br> ★ <b>尚可</b>：5成新(含)以下，有明顯使用痕跡或瑕疵</div>">
+                      <i class="fa-sharp fa-solid fa-circle-question color-lightgrey"></i>
+                    </button>
+                  </label>
+                </div>
+                <div class="quantity-area">
+                  <label class="font-bold">數量：</label>
+                  <div class="cart-quantity">
                     <div class="product-qty">
                       <div class="cart-quantity">
                         <div class="cart-plus-minus">
                           <div class="dec qtybutton">-</div>
-                          <input type="text" value="1" name="qtybutton" class="cart-plus-minus-box" />
+                          <input type="text" value="1" name="qtybutton" id="qtybutton" class="cart-plus-minus-box" />
                           <div class="inc qtybutton">+</div>
                         </div>
                       </div>
                     </div>
-                  </form>
+                  </div>
+                </div>
+                <!-- 加入購物車/立即結帳 btn -->
+                <div class="social-icon socile-icon-style-1">
+                  <ul>
+                    <li>
+                      <input type="submit" id="add" name="add" value="加入購物車" class="btn btn-success">
+                    </li>
+                    <li>
+                      <input type="submit" id="buy" name="buy" value="立即結帳" class="btn btn-danger">
+                    </li>
+                  </ul>
                 </div>
               </div>
-              <!-- 加入購物車/立即結帳 btn -->
-              <div class="social-icon socile-icon-style-1">
-                <ul>
-                  <li>
-                    <a href="ShoppingCart.html" data-tooltip="加入購物車" class="add-cart add-cart-text btnmy"
-                      data-placement="left" tabindex="0">加入購物車<i class="fa fa-cart-plus"></i></a>
-                  </li>
-                  <li>
-                    <a href="Payment.html" data-tooltip="立即結帳" class="add-cart add-cart-text btnmy"
-                      data-placement="left" tabindex="0">立即結帳</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            }
           </div>
         </div>
       </div>
@@ -489,14 +491,16 @@
                   </div>
                   <!-- <a href="shop.html" class="see-all">See all features</a> -->
                   <div class="quick-add-to-cart">
-                    <form method="post" class="cart">
+                    @using (Html.BeginForm())
+                    {
                       <div class="numbers-row">
                         <input type="number" id="french-hens" value="3" min="1" />
                       </div>
-                      <button class="single_add_to_cart_button" type="submit">
-                        加入購物車
-                      </button>
-                    </form>
+                      <input class="single_add_to_cart_button" type="submit" value="加入購物車" />
+
+
+                    }
+
                   </div>
                   <div class="quick-desc">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.

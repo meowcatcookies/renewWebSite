@@ -34,6 +34,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/D/vs2022/shopping/Views/Cart/payment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxwYXltZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/D/vs2022/shopping/Views/Cart/PaymentConfirm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxQYXltZW50Q29uZmlybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/D/vs2022/shopping/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

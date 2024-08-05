@@ -10,12 +10,14 @@ namespace shopping.Controllers
 {
   public class ProductController : Controller
   {
+    [HttpGet]
     public ActionResult Detail(string id)
     {
       using var product = new z_sqlProducts();
       var model = product.GetData(id);
       return View(model);
     }
+
   }
 
 
