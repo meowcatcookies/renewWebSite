@@ -1,69 +1,6 @@
-@model IEnumerable<shopping.Models.Carts>
+@model vmOrders
 @{
   ViewData["Title"] = "payment";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   Layout = "_Layout";
 }
 
@@ -74,13 +11,6 @@
       <div id="checkout">
         <div class="checkout-area">
           @using (Html.BeginForm())
-
-
-
-
-
-
-
           {
             <div class="row">
               <div class="col-lg-12">
@@ -89,31 +19,29 @@
                     <div class="billing-details">
                       <div class="contact-text right-side">
                         <h2>付款資訊</h2>
-
-
                         <div class="row">
                           <div class="col-lg-12 col-md-12">
                             <div class="input-box mb-20">
                               <label>付款人姓名 <em>*</em></label>
-                              <input type="text" name="name" class="info" placeholder="付款人姓名" />
+                              <input type="text" name="MemberName" id="MemberName" class="info" placeholder="付款人姓名" value="@Model.MemberName" />
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="input-box mb-20">
                               <label>電子信箱<em>*</em></label>
-                              <input type="email" name="email" class="info" placeholder="電子信箱" />
+                              <input type="email" name="MemberEmail" id="MemberEmail" class="info" placeholder="電子信箱" value="@Model.MemberEmail"/>
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="input-box mb-20">
                               <label>連絡電話<em>*</em></label>
-                              <input type="text" name="phone" class="info" placeholder="連絡電話" />
+                              <input type="text" name="MemberTel" id="MemberTel" class="info" placeholder="連絡電話" value="@Model.MemberTel"/>
                             </div>
                           </div>
                           <div class="col-lg-12">
                             <div class="input-box mb-20">
                               <label>聯絡地址<em>*</em></label>
-                              <input type="text" name="add1" class="info mb-10" placeholder="聯絡地址" />
+                              <input type="text" name="MemberAddress" id="MemberAddress" class="info mb-10" placeholder="聯絡地址" value="@Model.MemberAddress"/>
                             </div>
                           </div>
                           <div style="margin: 20px 0">
@@ -137,25 +65,25 @@
                               <div class="col-lg-12 col-md-12">
                                 <div class="input-box mb-20">
                                   <label>收件人姓名</label>
-                                  <input type="text" name="name" class="info" placeholder="收件人姓名" />
+                                  <input type="text" name="ReceiveName" id="ReceiveName" class="info" placeholder="收件人姓名" />
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-6">
                                 <div class="input-box mb-20">
                                   <label>電子信箱<em>*</em></label>
-                                  <input type="email" name="email" class="info" placeholder="電子信箱" />
+                                  <input type="email" name="ReceiveEmail" id="ReceiveEmail" class="info" placeholder="電子信箱" />
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-6">
                                 <div class="input-box mb-20">
                                   <label>連絡電話<em>*</em></label>
-                                  <input type="text" name="phone" class="info" placeholder="連絡電話" />
+                                  <input type="text" name="ReceiveTel" id="ReceiveTel" class="info" placeholder="連絡電話" />
                                 </div>
                               </div>
                               <div class="col-lg-12 col-md-12">
                                 <div class="input-box mb-20">
                                   <label>聯絡地址<em>*</em></label>
-                                  <input type="text" name="add1" class="info mb-10" placeholder="聯絡地址" />
+                                  <input type="text" name="ReceiveAddress" id="ReceiveAddress" class="info mb-10" placeholder="聯絡地址" />
                                 </div>
                               </div>
                             </div>
@@ -165,15 +93,15 @@
                         <div class="form">
                           <div class="input-box">
                             <label>備註:</label>
-                            <textarea class="area-tex"></textarea>
+                            <textarea class="area-tex" name="Remark"></textarea>
                           </div>
                         </div>
                         <div class="col-lg-12 d-flex justify-content-around my-5 text-center">
                           <div class="col-lg-5 col-md-5 col-sm-5">
-                            <a class="btn-def btn2" href="shopping_cart.html" style="display: block">返回購物車</a>
+                            <a class="btn-def btn2" href="@Url.Action("Indx","Cart",new{area=""})" style="display: block">返回購物車</a>
                           </div>
                           <div class="col-lg-5 col-md-5 col-sm-5">
-                            <input class="btn-def btn2 btnmy" href="./pay_confirm.html" style="display: block">確認結帳資訊
+                            <input type="submit" value="確認結帳資訊" class="btn-def btn2 btnmy"style="display: block">
                           </div>
                         </div>
                       </div>
@@ -188,3 +116,7 @@
     </div>
   </div>
 </main>
+@section Styles {
+  <link rel="stylesheet" href="@Url.Content("~/lib/RewearFrontend/css/cart-payment.css")" />
+
+}

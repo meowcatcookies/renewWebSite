@@ -60,7 +60,6 @@ namespace shopping.Controllers
       if (data.RoleNo == "Member")
       {
         CartService.MergeCart();
-
         return RedirectToAction("Index", "Home", new { area = "" });
       }
 

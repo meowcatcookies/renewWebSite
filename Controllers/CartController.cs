@@ -110,5 +110,53 @@ namespace shopping.Controllers
       }
       return RedirectToAction("Index", "Home", new { area = "" });
     }
+    [HttpGet]
+    [Login(RoleList = "Member")]
+    public IActionResult Payment()
+    {
+      using var users = new z_sqlUsers();
+      var model = users.GetPaymentUser();
+      return View(model);
+    }
+    [HttpPost]
+    [Login(RoleList = "Member")]
+    public IActionResult Payment(vmOrders model)
+    {
+      if (string.IsNullOrEmpty(model.ReceiveName)) model.ReceiveName = model.MemberName;
+      if (string.IsNullOrEmpty(model.ReceiveTel)) model.ReceiveTel = model.ReceiveTel;
+      if (string.IsNullOrEmpty(model.ReceiveEmail)) model.ReceiveEmail = model.ReceiveEmail;
+      if (string.IsNullOrEmpty(model.ReceiveAddress)) model.ReceiveAddress = model.ReceiveAddress;
+      model.IsDiffenceMember = (model.ReceiveName != model.MemberName) ? "on" : "off";
+      PaymentService.SetPaymentData(model);
+      return RedirectToAction("PaymentConfirm", "Cart", new { are = "" });
+    }
+    [HttpGet]
+    [Login(RoleList = "Member")]
+    public IActionResult PaymentConfirm()
+    {
+
+      var model = PaymentService.GetPaymentData();
+      model.ShippingNo = "Delivery"; //宅配到府
+      model.PaymentNo = "Cash"; //貨到付款
+      return View(model);
+    }
+    [HttpPost]
+    [Login(RoleList = "Member")]
+    public IActionResult PaymentConfirm(vmOrders model)
+    {
+      //產生訂單
+      var data = PaymentService.GetPaymentData();
+      data.ShippingNo = model.ShippingNo;
+      data.PaymentNo = model.PaymentNo;
+      string str_order_no = PaymentService.CreateOrder(data);
+      using var carts = new z_sqlCarts();
+      carts.DeleteCart();
+      SessionService.StringValue1 = "HomeIndex";
+      SessionService.MessageText = $"您的訂單已建立，訂單編號為:{str_order_no}，請注意到貨訊息!!";
+
+      return RedirectToAction("Index", "Message", new { area = "" });
+    }
   }
+
+
 }

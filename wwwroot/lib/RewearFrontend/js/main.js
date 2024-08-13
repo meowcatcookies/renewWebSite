@@ -14,9 +14,9 @@ Version: 1.0
 	01. jQuery MeanMenu
 	02. wow js active
 	03. scrollUp jquery active
-	04. slick carousel 
+	04. slick carousel
 
- 
+
 ======================================
 [ End table content ]
 ======================================*/
@@ -70,7 +70,7 @@ Version: 1.0
 	});
 
 	/*-------------------------------------------
-	04. slick carousel 
+	04. slick carousel
 	--------------------------------------------- */
 	$('.new-arrival-slider-active').slick({
 		slidesToShow: 4,
@@ -280,10 +280,10 @@ Version: 1.0
 			var newVal = parseFloat(oldValue) + 1;
 		} else {
 			// Don't allow decrementing below zero
-			if (oldValue > 0) {
+			if (oldValue > 1) {
 				var newVal = parseFloat(oldValue) - 1;
 			} else {
-				newVal = 0;
+				newVal = 1;
 			}
 		}
 		$button.parent().find("input").val(newVal);
