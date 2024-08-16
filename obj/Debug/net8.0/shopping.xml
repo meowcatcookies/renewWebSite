@@ -4188,11 +4188,24 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:shopping.Models.z_sqlOrders.GetOrderQueryList(System.String)">
+            <summary>
+            取得會員訂單(已結訂單/歷史訂單)
+            </summary>
+            <param name="codeNo">代碼(unclosed/closed)</param>
+            <returns></returns>
+        </member>
         <member name="M:shopping.Models.z_sqlOrders.CancelOrder(System.String)">
             <summary>
             取消訂單
             </summary>
             <param name="sheetNo">訂單編號</param>
+        </member>
+        <member name="M:shopping.Models.z_sqlOrders.CancelOrder(System.Int32)">
+            <summary>
+            取消訂單
+            </summary>
+            <param name="id">訂單Id</param>
         </member>
         <member name="M:shopping.Models.z_sqlPayments.GetDropDownList(System.Boolean)">
             <summary>

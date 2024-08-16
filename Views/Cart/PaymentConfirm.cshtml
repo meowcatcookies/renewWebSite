@@ -7,7 +7,7 @@
   using var shipping = new z_sqlShippings();
   var cartData = cart.GetDataList();
   var paymentList = payment.GetDropDownList(false);
-  var shippingList =shipping.GetDropDownList(false);
+  var shippingList = shipping.GetDropDownList(false);
   int int_amount = cart.GetCartTotal();
   int int_freight = (int_amount > 0 ) ? 60 : 0;
   int int_total = int_amount + int_freight;

@@ -1,5 +1,7 @@
 /* 內容 */
-
+#function .submenu{
+  z-index: 99 !important;
+}
 /* banner */
 #container .banner {
   background-image: url(../images/banner1-1.jpg);

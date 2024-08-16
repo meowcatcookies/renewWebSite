@@ -1,0 +1,119 @@
+@model IEnumerable<shopping.Models.Orders>
+@{
+  string str_titile = (SessionService.BaseNo == "unclosed") ? "未結訂單查詢" : "歷史訂單查詢";
+  ViewData["Title"] = str_titile;
+  Layout = "_Layout";
+}
+<div class="card border-secondary card-size-max my-5">
+  <div class="card-header bg-secondary text-white">
+    <h5>@ViewData["Title"]</h3>
+  </div>
+  <div class="card-body">
+    <div class="overflow-scroll">
+      <table class="table table-bordered">
+        <thead class="table-secondary">
+          <tr>
+            <th></th>
+            <th>
+              @Html.DisplayNameFor(model => model.SheetNo)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.SheetDate)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.StatusName)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.PaymentName)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.ShippingName)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.ReceiverName)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.ReceiverEmail)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.ReceiverAddress)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.OrderAmount)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.Remark)
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var item in Model)
+          {
+            <tr>
+              <td>
+                @Html.ActionLink("明細", "Details", "Order", new { area = "", id = item.Id }, new
+                  {
+                    @class = "btn btn-success",
+                    @style = "color:white"
+                  })
+                @if (SessionService.BaseNo == "unclosed")
+                {
+                  @if (item.StatusCode == "NP" || item.StatusCode == "NS" || item.StatusCode == "NW")
+                  {
+                    @Html.ActionLink("取消", "Cancel", "Order", new { area = "", id = item.Id }, new
+                      {
+                        @class = "btn btn-danger text-white",
+                        onclick = "return confirm('是否確定要取消此筆訂單?')"
+                      })
+                  }
+                }
+                @if (SessionService.BaseNo == "closed")
+                {
+                  @Html.ActionLink("退貨", "Return", "Order", new { area = "", id = item.Id }, new
+                    {
+                      @class = "btn btn-primary",
+                      @style = "color:white"
+                    })
+                }
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.SheetNo)
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.SheetDate)
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.StatusName)
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.PaymentName)
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.ShippingName)
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.ReceiverName)
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.ReceiverEmail)
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.ReceiverAddress)
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.OrderAmount)
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.Remark)
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+@section Styles {
+  <!-- 依需要引用不同樣式表 -->
+  <link rel="stylesheet" href="@Url.Content("~/lib/RewearFrontend/css/order-management.css")" />
+}

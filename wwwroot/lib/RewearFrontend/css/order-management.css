@@ -83,6 +83,9 @@
     background: var(--primaryColor);
     color: #fff;
 }
+.card{
+z-index: -100;
+}
 
 @media screen and (max-width:767px) {
     #orderManagement{

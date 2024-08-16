@@ -174,6 +174,27 @@ VALUES
       return model;
     }
     /// <summary>
+    /// 取得會員訂單(已結訂單/歷史訂單)
+    /// </summary>
+    /// <param name="codeNo">代碼(unclosed/closed)</param>
+    /// <returns></returns>
+    public List<Orders> GetOrderQueryList(string codeNo)
+    {
+      var model = new List<Orders>();
+      string sql_query = GetSQLSelect();
+      sql_query += " WHERE Orders.CustNo = @CustNo";
+      sql_query += " AND Orders.IsClosed = @IsClosed";
+      sql_query += " ORDER BY Orders.SheetNo DESC";
+      DynamicParameters parm = new DynamicParameters();
+      parm.Add("CustNo", SessionService.UserNo);
+      if (codeNo == "unclosed")
+        parm.Add("Isclosed", false);
+      else
+        parm.Add("Isclosed", true);
+      model = dpr.ReadAll<Orders>(sql_query, parm);
+      return model;
+    }
+    /// <summary>
     /// 取消訂單
     /// </summary>
     /// <param name="sheetNo">訂單編號</param>
@@ -184,6 +205,19 @@ VALUES
       parm.Add("SheetNo", sheetNo);
       parm.Add("StatusCode", "CC");
       dpr.Execute(sql_query, parm);
+    }
+    /// <summary>
+    /// 取消訂單
+    /// </summary>
+    /// <param name="id">訂單Id</param>
+    public void CancelOrder(int id)
+    {
+      string sql_query = GetSQLSelect();
+      sql_query+=" WHERE Orders.Id = @Id";
+      DynamicParameters parm = new DynamicParameters();
+      parm.Add("Id", id);
+      var data = dpr.ReadSingle<Orders>(sql_query,parm);
+      CancelOrder(data.SheetNo);
     }
   }
 }
