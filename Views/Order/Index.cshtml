@@ -4,6 +4,7 @@
   ViewData["Title"] = str_titile;
   Layout = "_Layout";
 }
+
 <div class="card border-secondary card-size-max my-5">
   <div class="card-header bg-secondary text-white">
     <h5>@ViewData["Title"]</h3>
@@ -67,12 +68,14 @@
                       })
                   }
                 }
-                @if (SessionService.BaseNo == "closed")
+                @if (SessionService.BaseNo == "closed" && item.StatusCode == "RD")
                 {
                   @Html.ActionLink("退貨", "Return", "Order", new { area = "", id = item.Id }, new
                     {
                       @class = "btn btn-primary",
-                      @style = "color:white"
+                      @style = "color:white",
+                      onclick = "return confirm('此筆訂單確定要退貨?')"
+
                     })
                 }
               </td>
@@ -113,7 +116,8 @@
     </div>
   </div>
 </div>
+
 @section Styles {
   <!-- 依需要引用不同樣式表 -->
-  <link rel="stylesheet" href="@Url.Content("~/lib/RewearFrontend/css/order-management.css")" />
+  @* <link rel="stylesheet" href="@Url.Content("~/lib/RewearFrontend/css/order-management.css")" /> *@
 }

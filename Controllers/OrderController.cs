@@ -36,8 +36,21 @@ namespace shopping.Controllers
     public IActionResult Cancel(int id = 0)
     {
       using var orders = new z_sqlOrders();
-      orders.CancelOrder(id);
-      return RedirectToAction("Index","Order",new{area=""});
+      orders.ChangeStatus(id, "CC");
+      return RedirectToAction("Index", "Order", new { area = "" });
+    }
+    [HttpGet]
+    public IActionResult Return(int id = 0)
+    {
+      using var orders = new z_sqlOrders();
+      orders.ChangeStatus(id, "RT");
+      return RedirectToAction("Index", "Order", new { area = "" });
+    }
+
+    [HttpGet]
+    public IActionResult Demo()
+    {
+      return View();
     }
   }
 }

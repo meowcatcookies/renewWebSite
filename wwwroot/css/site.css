@@ -135,4 +135,8 @@ a:active {
   order: -1;
   flex: 1;
 }
+.fixedcolumn{
+position: sticky;
+left: 0;
+}
 

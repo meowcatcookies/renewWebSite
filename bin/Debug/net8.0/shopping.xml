@@ -4030,6 +4030,19 @@
             <param name="prodNo"></param>
             <returns></returns>
         </member>
+        <member name="M:shopping.Areas.User.Controllers.OrderController.Search">
+            <summary>
+            查詢
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Areas.User.Controllers.OrderController.Sort(System.String)">
+            <summary>
+            欄位排序
+            </summary>
+            <param name="id">指定排序的欄位</param>
+            <returns></returns>
+        </member>
         <member name="M:shopping.Controllers.CartController.Index">
             <summary>
             購物車列表
@@ -4188,24 +4201,27 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:shopping.Models.z_sqlOrders.GetOrderQueryList(System.String)">
+        <member name="M:shopping.Models.z_sqlOrders.GetOrderQueryList(System.String,System.Boolean)">
             <summary>
             取得會員訂單(已結訂單/歷史訂單)
             </summary>
             <param name="codeNo">代碼(unclosed/closed)</param>
+            <param name="allMembers">所有會員(unclosed/closed)</param>
             <returns></returns>
         </member>
-        <member name="M:shopping.Models.z_sqlOrders.CancelOrder(System.String)">
+        <member name="M:shopping.Models.z_sqlOrders.ChangeStatus(System.Int32,System.String)">
             <summary>
-            取消訂單
-            </summary>
-            <param name="sheetNo">訂單編號</param>
-        </member>
-        <member name="M:shopping.Models.z_sqlOrders.CancelOrder(System.Int32)">
-            <summary>
-            取消訂單
+            變更訂單狀態(By Id)
             </summary>
             <param name="id">訂單Id</param>
+            <param name="statusCode">狀態碼</param>
+        </member>
+        <member name="M:shopping.Models.z_sqlOrders.ChangeStatus(System.String,System.String)">
+            <summary>
+            變更訂單狀態(By 單號)
+            </summary>
+            <param name="sheetNo">訂單編號</param>
+            <param name="statusCode">狀態碼</param>
         </member>
         <member name="M:shopping.Models.z_sqlPayments.GetDropDownList(System.Boolean)">
             <summary>

@@ -177,16 +177,34 @@ VALUES
     /// 取得會員訂單(已結訂單/歷史訂單)
     /// </summary>
     /// <param name="codeNo">代碼(unclosed/closed)</param>
+    /// <param name="allMembers">所有會員(unclosed/closed)</param>
     /// <returns></returns>
-    public List<Orders> GetOrderQueryList(string codeNo)
+    public List<Orders> GetOrderQueryList(string codeNo, bool allMembers = false)
     {
       var model = new List<Orders>();
       string sql_query = GetSQLSelect();
-      sql_query += " WHERE Orders.CustNo = @CustNo";
-      sql_query += " AND Orders.IsClosed = @IsClosed";
-      sql_query += " ORDER BY Orders.SheetNo DESC";
+      string sql_where = "";
+      if (allMembers)
+      {
+        sql_where += " WHERE Orders.IsClosed = @IsClosed";
+
+      }
+      else
+      {
+        sql_where += " WHERE Orders.CustNo = @CustNo";
+        sql_where += " AND Orders.IsClosed = @IsClosed";
+      }
+      sql_query += sql_where;
+      List<string> searchColumns = GetSearchColumns();
+      if (!string.IsNullOrEmpty(SessionService.SearchText) && searchColumns.Count() > 0)
+        sql_query += dpr.GetSQLWhereBySearchColumn(EntityObject, searchColumns, sql_where, SessionService.SearchText);
+      sql_query += GetSQLOrderBy();
+
+
+
       DynamicParameters parm = new DynamicParameters();
-      parm.Add("CustNo", SessionService.UserNo);
+      if (!allMembers) parm.Add("CustNo", SessionService.UserNo);
+
       if (codeNo == "unclosed")
         parm.Add("Isclosed", false);
       else
@@ -194,30 +212,36 @@ VALUES
       model = dpr.ReadAll<Orders>(sql_query, parm);
       return model;
     }
+
     /// <summary>
-    /// 取消訂單
-    /// </summary>
-    /// <param name="sheetNo">訂單編號</param>
-    public void CancelOrder(string sheetNo)
-    {
-      string sql_query = "UPDATE Orders SET StatusCode = @StatusCode WHERE SheetNo = @SheetNo";
-      DynamicParameters parm = new DynamicParameters();
-      parm.Add("SheetNo", sheetNo);
-      parm.Add("StatusCode", "CC");
-      dpr.Execute(sql_query, parm);
-    }
-    /// <summary>
-    /// 取消訂單
+    /// 變更訂單狀態(By Id)
     /// </summary>
     /// <param name="id">訂單Id</param>
-    public void CancelOrder(int id)
+    /// <param name="statusCode">狀態碼</param>
+
+    public void ChangeStatus(int id, string statusCode)
     {
       string sql_query = GetSQLSelect();
-      sql_query+=" WHERE Orders.Id = @Id";
+      sql_query += " WHERE Orders.Id = @Id";
       DynamicParameters parm = new DynamicParameters();
       parm.Add("Id", id);
-      var data = dpr.ReadSingle<Orders>(sql_query,parm);
-      CancelOrder(data.SheetNo);
+      var data = dpr.ReadSingle<Orders>(sql_query, parm);
+      ChangeStatus(data.SheetNo, statusCode);
+    }
+    /// <summary>
+    /// 變更訂單狀態(By 單號)
+    /// </summary>
+    /// <param name="sheetNo">訂單編號</param>
+    /// <param name="statusCode">狀態碼</param>
+
+    public void ChangeStatus(string sheetNo, string statusCode)
+    {
+      string sql_query = "UPDATE Oders SEt StatusCode = @StatusCode WHERE SheetNo = @SheetNo";
+      DynamicParameters parm = new DynamicParameters();
+      parm.Add("sheetNo", sheetNo);
+      parm.Add("statusCode", statusCode);
+      dpr.Execute(sql_query, parm);
+
     }
   }
 }
