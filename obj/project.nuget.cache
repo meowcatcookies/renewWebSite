@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Zycc1M0j4FQ=",
+  "dgSpecHash": "ZSKOxa2uwgA=",
   "success": true,
   "projectFilePath": "C:\\D\\vs2022\\shopping\\shopping.csproj",
   "expectedPackageFiles": [
@@ -171,8 +171,6 @@
     "C:\\Users\\Wed406\\.nuget\\packages\\nuget.protocol\\6.9.1\\nuget.protocol.6.9.1.nupkg.sha512",
     "C:\\Users\\Wed406\\.nuget\\packages\\nuget.versioning\\6.9.1\\nuget.versioning.6.9.1.nupkg.sha512",
     "C:\\Users\\Wed406\\.nuget\\packages\\oracle.manageddataaccess.core\\2.19.110\\oracle.manageddataaccess.core.2.19.110.nupkg.sha512",
-    "C:\\Users\\Wed406\\.nuget\\packages\\pagedlist.core\\1.17.4\\pagedlist.core.1.17.4.nupkg.sha512",
-    "C:\\Users\\Wed406\\.nuget\\packages\\pagedlist.core.mvc\\3.0.0\\pagedlist.core.mvc.3.0.0.nupkg.sha512",
     "C:\\Users\\Wed406\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "C:\\Users\\Wed406\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Wed406\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

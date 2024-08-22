@@ -90,8 +90,6 @@ C:\D\vs2022\shopping\bin\Debug\net8.0\NuGet.ProjectModel.dll
 C:\D\vs2022\shopping\bin\Debug\net8.0\NuGet.Protocol.dll
 C:\D\vs2022\shopping\bin\Debug\net8.0\NuGet.Versioning.dll
 C:\D\vs2022\shopping\bin\Debug\net8.0\Oracle.ManagedDataAccess.dll
-C:\D\vs2022\shopping\bin\Debug\net8.0\PagedList.Core.dll
-C:\D\vs2022\shopping\bin\Debug\net8.0\PagedList.Core.Mvc.dll
 C:\D\vs2022\shopping\bin\Debug\net8.0\Slapper.dll
 C:\D\vs2022\shopping\bin\Debug\net8.0\SQLitePCLRaw.batteries_v2.dll
 C:\D\vs2022\shopping\bin\Debug\net8.0\SQLitePCLRaw.core.dll

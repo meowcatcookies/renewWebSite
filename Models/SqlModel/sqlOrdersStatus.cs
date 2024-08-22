@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace shopping.Models.SqlModel
+namespace shopping.Models
 {
   public class z_sqlOrdersStatus : DapperSql<OrdersStatus>
   {

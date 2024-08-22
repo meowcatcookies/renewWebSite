@@ -43,16 +43,17 @@ namespace shopping.Models
     {
       using var dpr = new DapperRepository();
       string str_query = @"
-SELECT  Id, ParentNo, CategoryNo, CategoryName, Remark
+SELECT  Id, IsEnabled, IsCategory, ParentNo, CategoryNo, CategoryName, Remark
 FROM Categorys WHERE ParentNo = '' ORDER BY SortNo , CategoryNo
         ";
       return dpr.ReadAll<Categorys>(str_query);
     }
+
     public List<Categorys> GetDetailCategoryList(string parentNo)
     {
       using var dpr = new DapperRepository();
       string str_query = @"
-SELECT  Id, ParentNo, CategoryNo, CategoryName, Remark
+SELECT  Id, IsEnabled, IsCategory, ParentNo, CategoryNo, SortNo, CategoryName, RouteName, Remark
 FROM Categorys WHERE ParentNo = @ParentNo ORDER BY SortNo , CategoryNo
         ";
       DynamicParameters parm = new DynamicParameters();

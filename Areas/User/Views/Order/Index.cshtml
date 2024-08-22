@@ -1,150 +1,154 @@
 @using X.PagedList.Mvc.Core;
 @using X.PagedList;
 @model IEnumerable<shopping.Models.Orders>
+
 @{
-  string str_titile = (SessionService.BaseNo == "unclosed") ? "未結訂單查詢" : "歷史訂單查詢";
-  ViewData["Title"] = str_titile;
-  Layout = "_LayoutAdmin";
+    string str_title = (SessionService.BaseNo == "unclosed") ? "未結訂單查詢" : "歷史訂單查詢";
+    ViewData["Title"] = str_title;
+    Layout = "_LayoutAdmin";
 }
-<div class="card border-secondary card-size-max ">
-  <div class="card-header bg-secondary text-white">
-    <h5>@ViewData["Title"]</h3>
-  </div>
-  <div class="card-body">
-    <div class="row mx-1">
-      <div class="col-md-12">
-        <div class="float-start">
-          @Html.PagedListPager((IPagedList)Model, x => Url.Action("Index", ActionService.Controller, new
-            {
-              area =
-                 ActionService.Area,
-              page = x
-            }))
+
+<div class="card border-secondary card-size-max mb-5">
+    <div class="card-header bg-secondary text-white">
+        <h5>@ViewData["Title"]</h3>
+    </div>
+    <div class="card-body">
+        <div class="row mx-1">
+            <div class="col-md-12">
+                <div class="float-start">
+                    @Html.PagedListPager((IPagedList)Model, x => Url.Action("Index", ActionService.Controller, new
+                        {
+                            area = ActionService.Area,
+                            page = x
+                        }))
+                </div>
+                <div class="float-start page-info">
+                    @ViewBag.PageInfo
+                </div>
+                <div class="float-end">
+                    @using (Html.BeginForm("Search", ActionService.Controller, new { area = ActionService.Area },
+                    FormMethod.Post))
+                    {
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="control-label fw-bold">查詢條件：</span>
+                                </td>
+                                <td class="pe-2">
+                                    <input id="SearchText" name="SearchText" type="text"
+                                        class="form-control data-list-search-text" placeholder="請輸入查詢條件..."
+                                        value="@ViewBag.SearchText" style="width:200px;" />
+                                </td>
+                                <td>
+                                    <input type="submit" value="查詢" class="btn btn-primary" />
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </div>
+            </div>
         </div>
-        <div class="float-start page-info">
-          @ViewBag.PageInfo
-        </div>
-        <div class="float-end">
-          @using (Html.BeginForm("Search", ActionService.Controller, new { area = ActionService.Area },
-          FormMethod.Post))
-          {
-            <table>
-              <tr>
-                <td>
-                  <span class="control-label fw-bold">查詢條件：</span>
-                </td>
-                <td class="pe-2">
-                  <input id="SearchText" name="SearchText" type="text" class="form-control data-list-search-text"
-                    placeholder="請輸入查詢條件..." value="@ViewBag.SearchText" style="width:200px;" />
-                </td>
-                <td>
-                  <input type="submit" value="查詢" class="btn btn-primary" />
-                </td>
-              </tr>
+        <div class="overflow-scroll">
+            <table class="table table-bordered">
+                <thead class="table-secondary">
+                    <tr>
+                        <th></th>
+                        <th class="fixedcolumn">
+                            @Html.ColumnSort("Orders.SheetNo", Html.DisplayNameFor(model => model.SheetNo))
+                        </th>
+                        <th>
+                            @Html.ColumnSort("Orders.SheetDate", Html.DisplayNameFor(model => model.SheetDate))
+                        </th>
+                        <th>
+                            @Html.ColumnSort("OrdersStatus.StatusName", Html.DisplayNameFor(model => model.StatusName))
+                        </th>
+                        <th>
+                            @Html.ColumnSort("Orders.CustNo", Html.DisplayNameFor(model => model.CustNo))
+                        </th>
+                        <th>
+                            @Html.ColumnSort("Orders.CustName", Html.DisplayNameFor(model => model.CustName))
+                        </th>
+                        <th>
+                            @Html.ColumnSort("Payments.PaymentName", Html.DisplayNameFor(model => model.PaymentName))
+                        </th>
+                        <th>
+                            @Html.ColumnSort("Shippings.ShippingName", Html.DisplayNameFor(model => model.ShippingName))
+                        </th>
+                        <th>
+                            @Html.ColumnSort("Orders.ReceiverName", Html.DisplayNameFor(model => model.ReceiverName))
+                        </th>
+                        <th>
+                            @Html.ColumnSort("Orders.ReceiverEmail", Html.DisplayNameFor(model => model.ReceiverEmail))
+                        </th>
+                        <th>
+                            @Html.ColumnSort("Orders.ReceiverAddress", Html.DisplayNameFor(model =>
+                                     model.ReceiverAddress))
+                        </th>
+                        <th>
+                            @Html.ColumnSort("Orders.OrderAmount", Html.DisplayNameFor(model => model.OrderAmount))
+                        </th>
+                        <th>
+                            @Html.ColumnSort("Orders.Remark", Html.DisplayNameFor(model => model.Remark))
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink("明細", "Detail", "Order", new { area = "User", id = item.Id }, new
+                                    {
+                                        @classe = "btn btn-success",
+                                        @style = "color:black"
+                                    })
+                                @Html.ActionLink("狀態", "Status", "Order", new { area = "User", id = item.Id }, new
+                                    {
+                                        @classe = "btn btn-primary",
+                                        @style = "color:black"
+                                    })
+                            </td>
+                            <td class="fixedcolumn bg-white">
+                                <a href="#" title="@item.SheetNo @item.CustNo @item.CustName">@Html.DisplayFor(modelItem =>
+                                item.SheetNo)</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SheetDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StatusName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PaymentName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ShippingName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ReceiverName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ReceiverEmail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ReceiverAddress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderAmount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Remark)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
-          }
         </div>
-      </div>
     </div>
-    <div class="overflow-scroll">
-      <table class="table table-bordered">
-        <thead class="table-secondary">
-          <tr>
-            <th></th>
-            <th class="fixedcolumn">
-              @Html.ColumnSort("Orders.SheetNo", @Html.DisplayNameFor(model => model.SheetNo))
-            </th>
-            <th>
-              @Html.ColumnSort("Orders.SheetNo", @Html.DisplayNameFor(model => model.SheetDate))
-            </th>
-            <th>
-              @Html.ColumnSort("OrdersStatus.StatusName", @Html.DisplayNameFor(model => model.StatusName))
-            </th>
-            <th>
-              @Html.ColumnSort("Orders.SheetNo", @Html.DisplayNameFor(model => model.CustNo))
-            </th>
-            <th>
-              @Html.ColumnSort("Orders.SheetNo", @Html.DisplayNameFor(model => model.CustName))
-            </th>
-            <th>
-              @Html.ColumnSort("Payments.PaymentName", @Html.DisplayNameFor(model => model.PaymentName))
-            </th>
-            <th>
-              @Html.ColumnSort("Shippings.ShippingName", @Html.DisplayNameFor(model => model.SheetDate))
-            </th>
-            <th>
-              @Html.ColumnSort("Orders.ReceiverName", @Html.DisplayNameFor(model => model.ReceiverName))
-            </th>
-            <th>
-              @Html.ColumnSort("Orders.ReceiverEmail", @Html.DisplayNameFor(model => model.ReceiverEmail))
-            </th>
-            <th>
-              @Html.ColumnSort("Orders.ReceiverAddress", @Html.DisplayNameFor(model => model.ReceiverAddress))
-            </th>
-            <th>
-              @Html.ColumnSort("Orders.OrderAmount", @Html.DisplayNameFor(model => model.OrderAmount))
-            </th>
-            <th>
-              @Html.ColumnSort("Orders.Remark", @Html.DisplayNameFor(model => model.Remark))
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach (var item in Model)
-          {
-            <tr>
-              <td>
-                @Html.ActionLink("明細", "Details", "Order", new { area = "User", id = item.Id }, new
-                  {
-                    @class = "btn btn-success",
-                    @style = "color:white"
-                  })
-                @Html.ActionLink("明細", "Status", "Order", new { area = "User", id = item.Id }, new
-                  {
-                    @class = "btn btn-success",
-                    @style = "color:white"
-                  })
-              </td>
-              <td class="fixedcolumn bg-white">
-                <a href="#" title="@item.SheetNo @item.CustNo @item.CustName">@Html.DisplayFor(model => item.SheetNo)</a>
-              </td>
-              <td>
-                @Html.DisplayFor(model => item.SheetDate)
-              </td>
-              <td>
-                @Html.DisplayFor(model => item.StatusName)
-              </td>
-              <th>
-                @Html.DisplayFor(model => item.CustNo)
-              </th>
-              <th>
-                @Html.DisplayFor(model => item.CustName)
-              </th>
-              <td>
-                @Html.DisplayFor(model => item.PaymentName)
-              </td>
-              <td>
-                @Html.DisplayFor(model => item.ShippingName)
-              </td>
-              <td>
-                @Html.DisplayFor(model => item.ReceiverName)
-              </td>
-              <td>
-                @Html.DisplayFor(model => item.ReceiverEmail)
-              </td>
-              <td>
-                @Html.DisplayFor(model => item.ReceiverAddress)
-              </td>
-              <td>
-                @Html.DisplayFor(model => item.OrderAmount)
-              </td>
-              <td>
-                @Html.DisplayFor(model => item.Remark)
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
-  </div>
 </div>

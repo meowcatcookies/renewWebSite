@@ -760,7 +760,7 @@
             </summary>
             <param name="valueColumn">資料欄位名稱</param>
             <param name="textColumn">顯示欄位名稱</param>
-            <param name="orderColumn">排序欄位名稱</param>/// 
+            <param name="orderColumn">排序欄位名稱</param>///
             <param name="textIncludeValue">顯示欄位名稱是否顯示資料欄位</param>
             <returns></returns>
         </member>
@@ -4030,13 +4030,35 @@
             <param name="prodNo"></param>
             <returns></returns>
         </member>
-        <member name="M:shopping.Areas.User.Controllers.OrderController.Search">
+        <member name="M:shopping.Areas.User.Controllers.CategoryController.Create">
+            <summary>
+            新增
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Areas.User.Controllers.CategoryController.CreateEdit(System.Int32)">
+            <summary>
+            新增/修改(id = 0為新增)
+            </summary>
+            <returns></returns>
+            <param name="id">主鍵</param>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Areas.User.Controllers.CategoryController.CreateEdit(shopping.Models.Categorys)">
+            <summary>
+            新增/修改(id = 0為新增)
+            </summary>
+            <returns></returns>
+            <param name="model">使用者輸入的資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:shopping.Areas.User.Controllers.CategoryController.Search">
             <summary>
             查詢
             </summary>
             <returns></returns>
         </member>
-        <member name="M:shopping.Areas.User.Controllers.OrderController.Sort(System.String)">
+        <member name="M:shopping.Areas.User.Controllers.CategoryController.Sort(System.String)">
             <summary>
             欄位排序
             </summary>
@@ -4352,6 +4374,27 @@
             <summary>
             傳回付款結帳用的會員資訊
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Shopping.Areas.User.Controllers.OrderController.Index(System.Int32,System.Int32)">
+            <summary>
+            員工資料列表
+            </summary>
+            <param name="page">目前頁數</param>
+            <param name="pageSize">每頁筆數</param>
+            <returns></returns>
+        </member>
+        <member name="M:Shopping.Areas.User.Controllers.OrderController.Search">
+            <summary>
+            查詢
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Shopping.Areas.User.Controllers.OrderController.Sort(System.String)">
+            <summary>
+            欄位排序
+            </summary>
+            <param name="id">指定排序的欄位</param>
             <returns></returns>
         </member>
         <member name="T:dmCartTotal">

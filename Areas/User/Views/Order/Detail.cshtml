@@ -1,0 +1,130 @@
+@model vmOrderQuery
+
+@{
+    ViewData["Title"] = $"訂單明細查詢 - 訂單編號：{Model.MasterData.SheetNo}";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="card border-secondary card-size-max my-5">
+    <div class="card-header bg-secondary text-white text-start">
+        <h5>@ViewData["Title"]</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4 text-start">
+                <span class="fw-bold text-blue">@Html.DisplayNameFor(model => model.MasterData.SheetNo) ：</span>
+                @Html.DisplayFor(model => model.MasterData.SheetNo)
+            </div>
+            <div class="col-md-4 text-start">
+                <span class="fw-bold text-blue">@Html.DisplayNameFor(model => model.MasterData.SheetDate) ：</span>
+                @Html.DisplayFor(model => model.MasterData.SheetDate)
+            </div>
+            <div class="col-md-4 text-start">
+                <span class="fw-bold text-blue">@Html.DisplayNameFor(model => model.MasterData.StatusName) ：</span>
+                @Html.DisplayFor(model => model.MasterData.StatusName)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 text-start">
+                <span class="fw-bold text-blue">@Html.DisplayNameFor(model => model.MasterData.CustNo) ：</span>
+                @Html.DisplayFor(model => model.MasterData.CustNo)
+            </div>
+            <div class="col-md-4 text-start">
+                <span class="fw-bold text-blue">@Html.DisplayNameFor(model => model.MasterData.CustName) ：</span>
+                @Html.DisplayFor(model => model.MasterData.CustName)
+            </div>
+            <div class="col-md-4 text-start">
+                <span class="fw-bold text-blue">@Html.DisplayNameFor(model => model.MasterData.ReceiverName) ：</span>
+                @Html.DisplayFor(model => model.MasterData.ReceiverName)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 text-start">
+                <span class="fw-bold text-blue">@Html.DisplayNameFor(model => model.MasterData.PaymentName) ：</span>
+                @Html.DisplayFor(model => model.MasterData.PaymentName)
+            </div>
+            <div class="col-md-4 text-start">
+                <span class="fw-bold text-blue">@Html.DisplayNameFor(model => model.MasterData.ShippingName) ：</span>
+                @Html.DisplayFor(model => model.MasterData.ShippingName)
+            </div>
+            <div class="col-md-4 text-start">
+                <span class="fw-bold text-blue">@Html.DisplayNameFor(model => model.MasterData.OrderAmount) ：</span>
+                @Html.DisplayFor(model => model.MasterData.OrderAmount)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-start">
+                <span class="fw-bold text-blue">@Html.DisplayNameFor(model => model.MasterData.ReceiverEmail) ：</span>
+                @Html.DisplayFor(model => model.MasterData.ReceiverEmail)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-start">
+                <span class="fw-bold text-blue">@Html.DisplayNameFor(model => model.MasterData.ReceiverAddress) ：</span>
+                @Html.DisplayFor(model => model.MasterData.ReceiverAddress)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-start">
+                <span class="fw-bold text-blue">@Html.DisplayNameFor(model => model.MasterData.Remark) ：</span>
+                @Html.DisplayFor(model => model.MasterData.Remark)
+            </div>
+        </div>
+        <div class="overflow-scroll">
+            <table class="table table-bordered">
+                <thead class="table-secondary">
+                    <tr>
+                        <th class="fw-bold">
+                            @Html.DisplayNameFor(model => model.DetailData.FirstOrDefault().ProdNo)
+                        </th>
+                        <th class="fw-bold">
+                            @Html.DisplayNameFor(model => model.DetailData.FirstOrDefault().ProdName)
+                        </th>
+                        <th class="fw-bold">
+                            @Html.DisplayNameFor(model => model.DetailData.FirstOrDefault().ProdSpec)
+                        </th>
+                        <th class="fw-bold">
+                            @Html.DisplayNameFor(model => model.DetailData.FirstOrDefault().OrderQty)
+                        </th>
+                        <th class="fw-bold">
+                            @Html.DisplayNameFor(model => model.DetailData.FirstOrDefault().OrderPrice)
+                        </th>
+                        <th class="fw-bold">
+                            @Html.DisplayNameFor(model => model.DetailData.FirstOrDefault().OrderAmount)
+                        </th>
+                        <th class="fw-bold">
+                            @Html.DisplayNameFor(model => model.DetailData.FirstOrDefault().Remark)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.DetailData)
+                    {
+                        <tr>
+                            <td class="text-start">
+                                @Html.DisplayFor(modelItem => item.ProdNo)
+                            </td>
+                            <td class="text-start">
+                                @Html.DisplayFor(modelItem => item.ProdName)
+                            </td>
+                            <td class="text-start">
+                                @Html.DisplayFor(modelItem => item.ProdSpec)
+                            </td>
+                            <td class="text-end pe-2">
+                                @Html.DisplayFor(modelItem => item.OrderQty)
+                            </td>
+                            <td class="text-end pe-2">
+                                @Html.DisplayFor(modelItem => item.OrderPrice)
+                            </td>
+                            <td class="text-end pe-2">
+                                @Html.DisplayFor(modelItem => item.OrderAmount)
+                            </td>
+                            <td class="text-start">
+                                @Html.DisplayFor(modelItem => item.Remark)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>

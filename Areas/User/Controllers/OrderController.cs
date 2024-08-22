@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using X.PagedList;
 
-namespace shopping.Areas.User.Controllers
+namespace Shopping.Areas.User.Controllers
 {
   [Area("User")]
   public class OrderController : Controller
   {
+    [HttpGet]
     public IActionResult Init(string id = "")
     {
       SessionService.SortColumn = "";
@@ -20,6 +21,14 @@ namespace shopping.Areas.User.Controllers
       SessionService.BaseNo = id;
       return RedirectToAction("Index", "Order", new { area = "User" });
     }
+
+    /// <summary>
+    /// 員工資料列表
+    /// </summary>
+    /// <param name="page">目前頁數</param>
+    /// <param name="pageSize">每頁筆數</param>
+    /// <returns></returns>
+    [HttpGet]
     public IActionResult Index(int page = 1, int pageSize = 10)
     {
       using var orders = new z_sqlOrders();
@@ -28,8 +37,9 @@ namespace shopping.Areas.User.Controllers
       ViewBag.SearchText = SessionService.SearchText;
       return View(model);
     }
+
     [HttpGet]
-    public IActionResult Details(int id = 0)
+    public IActionResult Detail(int id = 0)
     {
       var model = new vmOrderQuery();
       using var orders = new z_sqlOrders();
@@ -38,13 +48,7 @@ namespace shopping.Areas.User.Controllers
       model.DetailData = details.GeOrderDetailList(model.MasterData.SheetNo);
       return View(model);
     }
-    [HttpGet]
-    public IActionResult Cancel(int id = 0)
-    {
-      using var orders = new z_sqlOrders();
-      orders.ChangeStatus(id, "CC");
-      return RedirectToAction("Index", "Order", new { area = "User" });
-    }
+
     [HttpGet]
     public IActionResult Status(int id = 0)
     {
@@ -52,13 +56,15 @@ namespace shopping.Areas.User.Controllers
       var model = orders.GetData(id);
       return View(model);
     }
-    [HttpGet]
+
+    [HttpPost]
     public IActionResult Status(Orders model)
     {
       using var orders = new z_sqlOrders();
       orders.ChangeStatus(model.SheetNo, model.StatusCode);
       return RedirectToAction("Index", "Order", new { area = "User" });
     }
+
     /// <summary>
     /// 查詢
     /// </summary>
@@ -70,6 +76,7 @@ namespace shopping.Areas.User.Controllers
       SessionService.SearchText = (obj_text == null) ? string.Empty : obj_text.ToString();
       return RedirectToAction("Index", "Order", new { area = "User" });
     }
+
     /// <summary>
     /// 欄位排序
     /// </summary>

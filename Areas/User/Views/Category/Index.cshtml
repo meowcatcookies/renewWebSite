@@ -1,0 +1,148 @@
+@model IEnumerable<shopping.Models.Categorys>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@{
+  ViewData["Title"] = "商品分類資料維護";
+  Layout = "_LayoutAdmin";
+}
+
+<div class="card border-secondary card-size-max mb-5">
+  <div class="card-header bg-secondary text-white">
+    <div class="float-start">
+      <h5>@ViewData["Title"]</h3>
+    </div>
+    <div class="float-end">
+      <h5>@ViewBag.SubHeader</h3>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row mx-1">
+      <div class="col-md-12">
+        <div class="float-start">
+          @Html.PagedListPager((IPagedList)Model, x => Url.Action("Index", ActionService.Controller, new
+            {
+              area = ActionService.Area,
+              page = x
+            }))
+        </div>
+        <div class="float-start page-info">
+          @ViewBag.PageInfo
+        </div>
+        <div class="float-end">
+          @using (Html.BeginForm("Search", ActionService.Controller, new { area = ActionService.Area },
+          FormMethod.Post))
+          {
+            <table>
+              <tr>
+                <td>
+                  <span class="control-label fw-bold">查詢條件：</span>
+                </td>
+                <td class="pe-2">
+                  <input id="SearchText" name="SearchText" type="text" class="form-control data-list-search-text"
+                    placeholder="請輸入查詢條件..." value="@ViewBag.SearchText" style="width:200px;" />
+                </td>
+                <td>
+                  <input type="submit" value="查詢" class="btn btn-primary" />
+                </td>
+              </tr>
+            </table>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="overflow-scroll">
+      <table class="table table-bordered">
+        <thead class="table-secondary">
+          <tr>
+            <th>
+              @Html.ActionLink("新增", "Create", ActionService.Controller, new { area = ActionService.Area }, new
+                {
+                  @classe = "btn btn-warning"
+                })
+              @if (!string.IsNullOrEmpty(SessionService.BaseNo))
+              {
+                @Html.ActionLink("回上層", "Init", ActionService.Controller, new
+                  {
+                    area = ActionService.Area,
+                    id = SessionService.StringValue2
+                  }, new { @class = "btn btn-success" })
+              }
+            </th>
+            <th class="fixedcolumn">
+              @Html.ColumnSort("Categorys.IsEnabled", Html.DisplayNameFor(model => model.IsEnabled))
+            </th>
+            <th>
+              @Html.ColumnSort("Categorys.CategoryNo", Html.DisplayNameFor(model => model.CategoryNo))
+            </th>
+            <th>
+              @Html.ColumnSort("Categorys.SortNo", Html.DisplayNameFor(model => model.SortNo))
+            </th>
+            <th>
+              @Html.ColumnSort("Categorys.CategoryName", Html.DisplayNameFor(model => model.CategoryName))
+            </th>
+            <th>
+              @Html.ColumnSort("Categorys.RouteName", Html.DisplayNameFor(model => model.RouteName))
+            </th>
+            <th>
+              @Html.ColumnSort("Categorys.Remark", Html.DisplayNameFor(model => model.Remark))
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var item in Model)
+          {
+            <tr>
+              <td>
+
+                @Html.ActionLink("修改", "CreateEdit", ActionService.Controller, new
+                  {
+                    area = ActionService.Area,
+                    id = item.Id
+                  }, new
+                  {
+                    @classe = "btn btn-primary"
+                  })
+                @Html.ActionLink("刪除", "Delete", ActionService.Controller, new
+                  {
+                    area = ActionService.Area,
+                    id = item.Id
+                  }, new
+                  {
+                    @classe = "btn btn-danger",
+                    onclick = "return confirm('是否確定要刪除');"
+                  })
+                @Html.ActionLink("明細", "Init", ActionService.Controller, new
+                  {
+                    area = ActionService.Area,
+                    id = item.CategoryNo
+                  }, new
+                  {
+                    @classe = "btn btn-warning"
+                  })
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.IsEnabled)
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.CategoryNo)
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.SortNo)
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.CategoryName)
+              </td>
+              <td>
+                @Html.DisplayFor(model => item.RouteName)
+              </td>
+              <td class="table-wrap">
+                @Html.DisplayFor(model => item.Remark)
+              </td>
+
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

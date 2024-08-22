@@ -1,0 +1,82 @@
+@model shopping.Models.Categorys
+
+@{
+  string str_action = (Model.Id == 0) ? "新增" : "修改";
+  ViewData["Title"] = "商品非類資料維護";
+  Layout = "_LayoutAdmin";
+}
+<div class="card card-size-small mt-5">
+  <div class="card-header bg-secondary text-white">
+    <div class="pt-2 px-2">
+      <div class="float-start">
+        <h4>@SessionService.ActionName</h4>
+      </div>
+      <div class="float-end">
+        <h4>@SessionService.PrgInfo</h4>
+      </div>
+    </div>
+  </div>
+  <div class="card-body p-2">
+    @using (Html.BeginForm())
+    {
+      @Html.AntiForgeryToken()
+      <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.ParentNo)
+
+        <div class="row form-group">
+          @Html.LabelFor(model => model.IsEnabled, htmlAttributes: new { @class = "control-label col-md-3" })
+          <div class="col-md-9">
+            @Html.CheckBoxFor(model => model.IsEnabled, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.IsEnabled, "", new { @class = "text-danger" })
+          </div>
+        </div>
+        <div class="row form-group">
+          @Html.LabelFor(model => model.SortNo, htmlAttributes: new { @class = "control-label col-md-3" })
+          <div class="col-md-9">
+            @Html.EditorFor(model => model.SortNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SortNo, "", new { @class = "text-danger" })
+          </div>
+        </div>
+        <div class="row form-group">
+          @Html.LabelFor(model => model.CategoryNo, htmlAttributes: new { @class = "control-label col-md-3" })
+          <div class="col-md-9">
+            @Html.EditorFor(model => model.CategoryNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CategoryNo, "", new { @class = "text-danger" })
+          </div>
+        </div>
+        <div class="row form-group">
+          @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label col-md-3" })
+          <div class="col-md-9">
+            @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+          </div>
+        </div>
+        <div class="row form-group">
+          @Html.LabelFor(model => model.Remark, htmlAttributes: new { @class = "control-label col-md-3" })
+          <div class="col-md-9">
+            @Html.EditorFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+          </div>
+        </div>
+
+
+
+        <div class="row form-group">
+
+          <div class="col-md-12">
+            <input type="submit" value="資料存檔" class="btn btn-primary" />
+            @Html.ActionLink("取消異動", "Index", ActionService.Controller, new
+              {
+                area = ActionService.Area
+              }, new { @class = "btn btn-success" }
+                   )
+          </div>
+
+        </div>
+      </div>
+
+    }
+  </div>
+</div>

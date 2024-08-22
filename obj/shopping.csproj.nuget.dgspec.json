@@ -154,10 +154,6 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
-            "PagedList.Core.Mvc": {
-              "target": "Package",
-              "version": "[3.0.0, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"

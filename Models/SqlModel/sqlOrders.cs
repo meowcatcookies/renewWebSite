@@ -236,12 +236,11 @@ VALUES
 
     public void ChangeStatus(string sheetNo, string statusCode)
     {
-      string sql_query = "UPDATE Oders SEt StatusCode = @StatusCode WHERE SheetNo = @SheetNo";
+      string sql_query = "UPDATE Orders SET StatusCode = @StatusCode WHERE SheetNo = @SheetNo";
       DynamicParameters parm = new DynamicParameters();
-      parm.Add("sheetNo", sheetNo);
-      parm.Add("statusCode", statusCode);
+      parm.Add("SheetNo", sheetNo);
+      parm.Add("StatusCode", statusCode);
       dpr.Execute(sql_query, parm);
-
     }
   }
 }
